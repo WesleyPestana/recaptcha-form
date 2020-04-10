@@ -1,0 +1,15 @@
+[default]
+SQLALCHEMY_DATABASE_URI = "sqlite:///development.db"
+SECRET_KEY = 'chavesecreta'
+EXTENSIONS = [
+    "pycaptcha.ext.database",
+    "pycaptcha.ext.auth",
+    "pycaptcha.ext.commands",
+    "pycaptcha.blueprints.views",
+]
+
+[testing]
+SQLALCHEMY_DATABASE_URI = 'sqlite:///testing.db'
+
+[production]
+SQLALCHEMY_DATABASE_URI = 'sqlite:///production.db'

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="bg-light p-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="mb-4">Criar conta</h1>
+                <div class="col-xs-12 col-md-8 col-lg-5 text-center m-auto">
+                    <form class="form-signin" method="POST">
+                        {% if errors %}
+                        <div class="alert alert-danger" role="alert">
+                            Por favor, revise os campos abaixo.
+                        </div>
+                        {% endif %}
+                        <div class="form-group text-left">
+                            <label>Nome completo</label>
+                            <input type="text" id="nome" class="form-control" name="nome" value="{{ nome }}"
+                                   placeholder="Ex.: João das couves" autocomplete="off" required />
+                        </div>
+
+                        <div class="form-group text-left">
+                            <label>Email</label>
+                            <input type="email" id="email" class="form-control" name="email" value="{{ email }}"
+                                   placeholder="Ex.: email@dominio.com" autocomplete="off" required />
+                        </div>
+
+                        <div class="form-group text-left">
+                            <label>Senha</label>
+                            <input type="password" id="senha" class="form-control" name="senha"
+                                   placeholder="Ex.: ******" required />
+                        </div>
+
+                        <div class="form-group text-left">
+                            <label>Confirma senha</label>
+                            <input type="password" id="confirma_senha" class="form-control" name="c_senha" 
+                                   placeholder="Ex.: ******" required />
+                            {% if errors['senha'] %}
+                            <div id="senha-error" class="message-error mt-2" role="alert">
+                                As senhas não combinam.
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group float-left">
+                            <div class="g-recaptcha" data-sitekey="6LetuOYUAAAAABw3ksB79bFG6oYnJOUYfj7AHGA5"></div>
+                            {% if errors['recaptcha'] %}
+                            <div id="recaptcha-error" class="message-error mt-2" role="alert">
+                                Recaptcha não pode ficar em branco! Por favor, preencha-o.
+                            </div>
+                            {% endif %}
+                        </div>
+
+
+                        <button class="btn btn-lg btn-nowi-primary btn-block" type="submit">Cadastrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

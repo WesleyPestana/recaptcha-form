@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="jumbotron text-center mb-0 bg-nowi-default rounded-0">
+    <div class="container">
+        <h1 class="text-white">Objetivo</h1>
+        <p class="lead text-white mt-4">
+            Através de simples formulários demonstramos a utilidade e funcionamento desse poderoso recurso.
+        </p>
+        <p class="mt-4">
+            <a href="/cadastrar/" class="btn btn-primary btn-nowi-primary my-2">Cadastre-se</a>
+            <a href="/login/" class="btn btn-primary btn-nowi-primary my-2">Login</a>
+        </p>
+    </div>
+</section>
+
+<div class="p-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-9 m-auto">
+                <h2>O que é reCAPTCHA?</h2>
+                <p>
+                    O reCAPTCHA é um serviço do Google gratuito que protege seu site contra spam e abuso. 
+                    Ele usa técnicas avançadas de análise de risco para diferenciar humanos e bots.
+                </p>
+                <h2 class="mt-5">Como funciona?</h2>
+                <p>
+                    Para começar a usar o reCAPTCHA, você precisa <a href="https://www.google.com/recaptcha/intro/v3.html">registrar</a>
+                    o seu site no console admin do Google recaptcha, assim irá receber um par de chaves. 
+                    O par de chaves consiste em uma chave do site e uma chave secreta. 
+                </p>
+                <ul>
+                    <li>A chave do site é usada para chamar o serviço reCAPTCHA no seu site ou aplicativo móvel.</li>
+                    <li>
+                        A chave secreta autoriza a comunicação entre o back-end do aplicativo e o servidor reCAPTCHA 
+                        para verificar a resposta do usuário.
+                    </li>
+                    <li>A chave secreta precisa ser mantida em segurança para fins de segurança.</li>
+                </ul>
+                <p>Mais informações na <a href="https://developers.google.com/recaptcha/intro" target="blank">Documentação</a>
+                    oficial desenvolvida pelo Google.
+                </p>
+            </div>
+            <div class="col-12 col-md-3 mt-4">
+                <img src="{{ url_for('static', filename='img/recaptcha.png') }}" class="w-70" alt="Imagem reCAPTCHA" title="reCAPTCHA">
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

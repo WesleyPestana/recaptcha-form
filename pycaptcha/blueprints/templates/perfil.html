@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="bg-light p-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="card text-center">
+                    <div class="card-header">
+                      <h3>Olá <strong>{{ current_user.nome }}</strong>!</h3>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Aparentemente você não é um robo (^-^)</h5>
+                      <img src="{{ url_for('static', filename='img/mulher.png') }}" width="60" height="60" alt="icone-mulher">
+                      <img src="{{ url_for('static', filename='img/homem.png') }}" width="60" height="60" alt="icone-homem">
+                      <p class="card-text mt-2">Sempre é uma alegria imensa ter você por perto! Seja muito bem-vindo, amigo.</p>
+                      <a href="/logout/" class="btn btn-primary btn-nowi-primary my-2">Logout</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                      Tenha um bom dia!
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
