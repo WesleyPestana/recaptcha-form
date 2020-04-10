@@ -4,8 +4,12 @@ function scrollTop() {
 }
 
 // Feedback caso ocorra erros nos inputs do cadastro
+const email_error = document.querySelector('div#email-error');
 const senha_error = document.querySelector('div#senha-error');
 const recaptcha_error = document.querySelector('div#senha-error');
+if (email_error) {
+    $('#email').addClass('input-error');
+}
 if (senha_error) {
     $('#confirma_senha').addClass('input-error');
 }

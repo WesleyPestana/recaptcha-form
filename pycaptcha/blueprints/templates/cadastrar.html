@@ -24,6 +24,11 @@
                             <label>Email</label>
                             <input type="email" id="email" class="form-control" name="email" value="{{ email }}"
                                    placeholder="Ex.: email@dominio.com" autocomplete="off" required />
+                            {% if errors['email'] %}
+                            <div id="email-error" class="message-error mt-2" role="alert">
+                                E-mail informado já possui um cadastro.
+                            </div>
+                            {% endif %}
                         </div>
 
                         <div class="form-group text-left">

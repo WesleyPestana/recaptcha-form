@@ -1,6 +1,7 @@
 import requests
 from flask import Blueprint, render_template, redirect, request
 from flask_login import login_required, login_user, logout_user
+from sqlalchemy.exc import IntegrityError
 from pycaptcha.ext.auth import login_manager
 from pycaptcha.ext.database import db
 from pycaptcha.models import Usuario
@@ -45,9 +46,15 @@ def cadastrar():
         if errors:
             return render_template('cadastrar.html', errors=errors, nome=nome, email=email)
 
-        usuario = Usuario(nome, email, senha)
-        db.session.add(usuario)
-        db.session.commit()
+        try:
+            usuario = Usuario(nome, email, senha)
+            db.session.add(usuario)
+            db.session.commit()
+        except IntegrityError:
+            errors['email'] = True
+            return render_template('cadastrar.html', errors=errors, nome=nome, email=email)
+
+
         return redirect('/login/')
 
     return render_template('cadastrar.html', errors=errors)
