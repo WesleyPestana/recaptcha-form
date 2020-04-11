@@ -7,6 +7,7 @@ from pycaptcha.ext.database import db
 from pycaptcha.models import Usuario
 
 usuarios_bp = Blueprint('usuarios', __name__)
+SECRET_CAPTCHA_KEY = 'SUA_SECRET_KEY_RECAPTCHA'
 
 
 def init_app(app):
@@ -32,16 +33,15 @@ def cadastrar():
         recaptcha_request = requests.post(
             'https://www.google.com/recaptcha/api/siteverify',
             data={
-                'secret': '6LetuOYUAAAAAOH0J2P-xYVT_jJXM7NPTuj9jRyP',
+                'secret': SECRET_CAPTCHA_KEY,
                 'response': recaptcha_response
             }
         ).json()
-        print(recaptcha_request)
 
-        if senha != confirma_senha:
-            errors['senha'] = True
         if not recaptcha_request.get('success'):
             errors['recaptcha'] = True
+        if senha != confirma_senha:
+            errors['senha'] = True
 
         if errors:
             return render_template('cadastrar.html', errors=errors, nome=nome, email=email)
@@ -53,8 +53,6 @@ def cadastrar():
         except IntegrityError:
             errors['email'] = True
             return render_template('cadastrar.html', errors=errors, nome=nome, email=email)
-
-
         return redirect('/login/')
 
     return render_template('cadastrar.html', errors=errors)
@@ -62,18 +60,34 @@ def cadastrar():
 
 @usuarios_bp.route('/login/', methods=['GET', 'POST'])
 def login():
+    errors = {}
+
     if request.method == 'POST':
         email = request.form['email']
         senha = request.form['senha']
+        recaptcha_response = request.form['g-recaptcha-response']
         usuario = Usuario.query.filter_by(email=email).first()
 
+        recaptcha_request = requests.post(
+            'https://www.google.com/recaptcha/api/siteverify',
+            data={
+                'secret': SECRET_CAPTCHA_KEY,
+                'response': recaptcha_response
+            }
+        ).json()
+
+        if not recaptcha_request.get('success'):
+            errors['recaptcha'] = True
         if not usuario or not usuario.verificar_senha(senha):
-            return redirect('/login/')
+            errors['usuario'] = True
+
+        if errors:
+            return render_template('login.html', errors=errors)
 
         login_user(usuario)
         return redirect('/perfil/')
 
-    return render_template('login.html')
+    return render_template('login.html', errors=errors)
 
 
 @usuarios_bp.route('/logout/')

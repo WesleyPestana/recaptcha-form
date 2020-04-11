@@ -9,7 +9,11 @@
                 <h1 class="mb-4">Login</h1>
                 <div class="col-xs-12 col-md-8 col-lg-5 text-center m-auto">
                     <form class="form-signin" method="POST">
-
+                        {% if errors.get('usuario') %}
+                        <div class="alert alert-danger" role="alert">
+                            E-mail ou senha incorreto!
+                        </div>
+                        {% endif %}
                         <div class="form-group text-left">
                             <label>Email</label>
                             <input type="email" id="email" class="form-control" name="email" 
@@ -20,6 +24,15 @@
                             <label>Senha</label>
                             <input type="password" id="senha" class="form-control" name="senha" 
                                    placeholder="Ex.: ******" autocomplete="off" required />
+                        </div>
+
+                        <div class="form-group float-left">
+                            <div class="g-recaptcha" data-sitekey="SUA_SITE_KEY"></div>
+                            {% if errors.get('recaptcha') %}
+                            <div id="recaptcha-error" class="message-error mt-2" role="alert">
+                                Recaptcha não pode ficar em branco! Por favor, preencha-o.
+                            </div>
+                            {% endif %}
                         </div>
                         
                         <button class="btn btn-lg btn-nowi-primary btn-block" type="submit">Acessar</button>

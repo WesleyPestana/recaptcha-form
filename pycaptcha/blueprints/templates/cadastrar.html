@@ -24,7 +24,7 @@
                             <label>Email</label>
                             <input type="email" id="email" class="form-control" name="email" value="{{ email }}"
                                    placeholder="Ex.: email@dominio.com" autocomplete="off" required />
-                            {% if errors['email'] %}
+                            {% if errors.get('email') %}
                             <div id="email-error" class="message-error mt-2" role="alert">
                                 E-mail informado já possui um cadastro.
                             </div>
@@ -41,7 +41,7 @@
                             <label>Confirma senha</label>
                             <input type="password" id="confirma_senha" class="form-control" name="c_senha" 
                                    placeholder="Ex.: ******" required />
-                            {% if errors['senha'] %}
+                            {% if errors.get('senha') %}
                             <div id="senha-error" class="message-error mt-2" role="alert">
                                 As senhas não combinam.
                             </div>
@@ -49,14 +49,13 @@
                         </div>
 
                         <div class="form-group float-left">
-                            <div class="g-recaptcha" data-sitekey="6LetuOYUAAAAABw3ksB79bFG6oYnJOUYfj7AHGA5"></div>
-                            {% if errors['recaptcha'] %}
+                            <div class="g-recaptcha" data-sitekey="SUA_SITE_KEY"></div>
+                            {% if errors.get('recaptcha') %}
                             <div id="recaptcha-error" class="message-error mt-2" role="alert">
                                 Recaptcha não pode ficar em branco! Por favor, preencha-o.
                             </div>
                             {% endif %}
                         </div>
-
 
                         <button class="btn btn-lg btn-nowi-primary btn-block" type="submit">Cadastrar</button>
                     </form>
