@@ -8,6 +8,7 @@
 - Faça o download desse repositório;
 - Instale e ative sua virtualenv: `python -m venv venv`  `venv/scripts/activate` ou `venv/bin/activate`;
 - Instale as dependências: `pip install -r requirements.txt`;
+- <b>Ajuste as suas reCaptcha Keys nos arquivos:</b> `pycaptcha/blueprints/views.py`, `pycaptcha/blueprints/templates/login.html` e `pycaptcha/blueprints/templates/cadastrar.html`
 - Crie o banco de dados: `flask create-db`;
 - Por fim, execute: `flask run`;
 - Caso queira dar um drop no banco já existente, execute: `flask drop-db`.
