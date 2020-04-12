@@ -25,4 +25,4 @@ Essa aplicação foi desenvolvida com [Python](https://docs.python.org/pt-br/3/i
 
 ## 📝 Observações
 
-- Vídeo explicação da aplicação desenvolvida: Em breve...
+- Vídeo explicação da aplicação desenvolvida: [Vídeo](https://www.youtube.com/watch?v=fsXAjdGuT5Y)
